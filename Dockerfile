@@ -1,6 +1,11 @@
 # Base image
 FROM ubuntu
 
+# Set debconf to automatically select Indian geographic area
+RUN echo "debconf debconf/frontend select Noninteractive" | debconf-set-selections \
+    && echo "tzdata tzdata/Areas select Indian" | debconf-set-selections \
+    && echo "tzdata tzdata/Zones/Indian select Kolkata" | debconf-set-selections
+
 # Install Git, Apache, and Python
 RUN apt-get update && apt-get install -y git apache2 python3 python3-pip
 RUN apt update && apt install -y php php-cli php-mbstring composer && apt update && apt install -y nodejs npm
