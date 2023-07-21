@@ -5,18 +5,18 @@ FROM ubuntu
 RUN apt-get update && apt-get install -y git apache2 python3 python3-pip
 
 # Clone the code from GitHub repository
-RUN git clone https://github.com/prajeet1000/notes-app-web-deploy.git
+RUN git clone https://github.com/prajeet1000/django-notes-app.git
 
 # Copy the frontend & backend code to the Apache web root
 RUN mkdir -p /app/backend
-RUN cp -r notes-app-web-deploy/django-notes-app/* /app/backend/
+RUN cp -r django-notes-app/* /app/backend
 
-RUN cp -r notes-app-web-deploy/test.txt /var/www/html/
-RUN cp -r notes-app-web-deploy/tb.php /var/www/html/
-RUN cp -r notes-app-web-deploy/main.css /var/www/html/
-RUN cp -r notes-app-web-deploy/index.php /var/www/html/
-RUN cp -r notes-app-web-deploy/customisation.css /var/www/html/
-RUN cp -r notes-app-web-deploy/Assets /var/www/html/
+RUN cp -r django-notes-app/test.txt /var/www/html/
+RUN cp -r django-notes-app/tb.php /var/www/html/
+RUN cp -r django-notes-app/main.css /var/www/html/
+RUN cp -r django-notes-app/index.php /var/www/html/
+RUN cp -r django-notes-app/customisation.css /var/www/html/
+RUN cp -r django-notes-app/Assets /var/www/html/
 
 
 
@@ -35,15 +35,3 @@ EXPOSE 8000
 
 # Start Apache and Python backend when the container starts
 CMD service apache2 start && python3 /app/backend/manage.py runserver 0.0.0.0:8000
-FROM python:3.9
-
-WORKDIR /app/backend
-
-COPY requirements.txt /app/backend
-RUN pip install -r requirements.txt
-
-COPY . /app/backend
-
-EXPOSE 8000
-
-CMD python /app/backend/manage.py runserver 0.0.0.0:8000
