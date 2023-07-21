@@ -3,6 +3,7 @@ FROM ubuntu
 
 # Install Git, Apache, and Python
 RUN apt-get update && apt-get install -y git apache2 python3 python3-pip
+RUN apt update && apt install -y php php-cli php-mbstring composer && apt update && apt install -y nodejs npm
 
 # Clone the code from GitHub repository
 RUN git clone https://github.com/prajeet1000/notes-app-web-deploy.git
