@@ -5,18 +5,18 @@ FROM ubuntu
 RUN apt-get update && apt-get install -y git apache2 python3 python3-pip
 
 # Clone the code from GitHub repository
-RUN git clone https://github.com/prajeet1000/django-notes-app.git
+RUN git clone https://github.com/prajeet1000/notes-app-web-deploy.git
 
 # Copy the frontend & backend code to the Apache web root
 RUN mkdir -p /app/backend
-RUN cp -r django-notes-app/* /app/backend
+RUN cp -r notes-app-web-deploy/django-notes-app/* /app/backend
 
-RUN cp -r django-notes-app/test.txt /var/www/html/
-RUN cp -r django-notes-app/tb.php /var/www/html/
-RUN cp -r django-notes-app/main.css /var/www/html/
-RUN cp -r django-notes-app/index.php /var/www/html/
-RUN cp -r django-notes-app/customisation.css /var/www/html/
-RUN cp -r django-notes-app/Assets /var/www/html/
+RUN cp -r notes-app-web-deploy/test.txt /var/www/html/
+RUN cp -r notes-app-web-deploy/tb.php /var/www/html/
+RUN cp -r notes-app-web-deploy/main.css /var/www/html/
+RUN cp -r notes-app-web-deploy/index.php /var/www/html/
+RUN cp -r notes-app-web-deploy/customisation.css /var/www/html/
+RUN cp -r notes-app-web-deploy/Assets /var/www/html/
 
 
 
